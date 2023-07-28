@@ -1,0 +1,173 @@
+/*****************************************************************************
+TITLE: Claims																																
+AUTHOR: Swapnil Srivastava
+ROLL NUMBER: 2101AI34
+Declaration of Authorship
+This txt file, claims.txt, is part of the assignment of CS210 at the 
+department of Computer Science and Engg, IIT Patna . 
+*****************************************************************************/
+
+Files:
+==========
+*All the files i submitted, asm.cpp and emu.cpp and claims.txt, have my name and student id at the start, along with a declaration of authorship.
+
+The evidence for Assembler including the output files from the 4 test examples has also been uploaded. They are test1(3 output files), test2(3 output files), test3
+(4 output files), test4(4 output files), test5(4 output files) and test6(4 output files). All the test files have been tested and work properly. As for the evidence for the emulator is uploaded
+with all the trace files generated (along with two new tests - test5 and test6).
+
+*Both of my cpp programs did not show any errors and warnings when i compiled it with
+g++ -std=c++17 -pedantic -W -Wall -Wpointer-arith -Wwrite-strings 
+
+=============================
+Program format and structure:
+=============================
+1. The assembler:
+
+    * with two data structures to store respectively labels and mnemonic table with expected operands.
+    * reads into an internal form on the first pass.
+    * detects label errors.
+    * consistent and sensible formatting with sensible program structure. 
+    * sensible variable, function & type names with explanatory comments.
+		* advanced listing file.
+		* assembles test programs.
+	  * can implements and demonstrates the instruction SET.
+
+2. The emulator :
+
+		* with three data structures to store respectively memory, mnemonic table with expected operands
+		  and a vector for instructions.
+    * loads object file, 
+    * by giving the instructions like "-before/-after" , the program can produce memory dump before/after execution.
+    * by giving the instruction like "-trace", the program prints the result of program executed.
+    * detects errant programs.
+
+
+=============================
+Testing:
+=============================
+
+1. The assembler:
+
+I have tested  six examples shown as bellow. The errors only occurred in the file test1.asm and 
+the program immediately stopped on the second pass. 
+
+The others were tested without any errors detected and produced three output files, listing file, 
+error log file and machine readable object file, for each example. 
+
+After comparing the listing files and object file of test5.asm , test5.l, test6.l, test6.o 
+with the implemented result given on the assignment, both of them show no difference 
+from those provided. 
+ 
+
+1)
+#Input: asm test1.asm
+#Output: 
+a. test1.l 
+b. test1.log (without any error messages)
+c. test1.o
+
+2)
+#Input:asm test2.asm
+#Output: 
+a. test2.l (empty)
+b. test2.log (with error messages shown in log file)
+c. test2.o (empty)
+
+Error messages:
+ERROR: Line 4: Duplicate label declaration: label
+ERROR: Line 4: No such label: nonesuch
+ERROR: Line 5: Invalid number format : 08ge
+ERROR: Line 7: Operand missing.
+ERROR: Line 8: Invalid number format : 5,
+ERROR: Line 8: Unexpected operand.
+ERROR: Line 9: Unexpected operand.
+ERROR: Line 10: Invalid label: 0def
+ERROR: Line 11: Unknown mnemonic: fibble
+ERROR: Line 12: Unknown mnemonic: 0def
+
+3)
+#Input:asm test3.asm
+#Output: 
+a. test3.l 
+b. test3.log (without any error messages)
+c. test3.o
+
+
+4)
+#Input:asm test4.asm
+#Output: 
+a. test4.l 
+b. test4.log (without any error messages)
+c. test4.o
+
+5)
+#Input:asm test5.asm
+#Output: 
+a. test5.l 
+b. test5.log (without any error messages)
+c. test5.o
+
+6)
+#Input:asm test6.asm
+#Output: 
+a. test6.l 
+b. test6.log (without any error messages)
+c. test6.o
+
+
+2. The emulator:
+
+I have tested four examples shown as bellow. 
+A warning has been generated if the emulator does not find the HALT instruction.
+Note that test1 results in an infinite loop. 
+and would produce incredibly large trace file if emulated. 
+
+The others were tested without any errors detected and produced excution data both on the screen and 
+output text file for each example according to the usage instruction. 
+
+After running the bin file given, the trace data are the same as 
+the implemented result from my own program.
+
+1)
+#Input:emu -trace test3.o
+#Output: test3.trace
+Writing trace file.
+Warning: Reached end of file without recieving HALT instruction. Program terminated.
+2 instructions executed.
+
+
+2)
+#Input: emu -trace test4.o
+#Output: test4.trace
+Writing trace file.
+47654 instructions executed.
+
+
+3)
+#Input: emu -trace test5.o
+#Output: test5.trace
+Writing trace file.
+2000 instructions executed.
+
+
+3)
+#Input: emu -trace test6.o
+#Output: test6.trace
+Writing trace file.
+15 instructions executed.
+
+
+4)
+#Input: emu -after test6.o
+#Output: 
+Memory Dump:
+
+Memory Dump:
+
+00000000 00100000 0000000b 00000f00 00000004
+00000004 00000100 00000008 ffffff0a 00000003
+00000008 00000f00 00000104 00000100 00000008
+0000000c 00000002 00000006 00000012 0000002a
+00000010 0000000c
+00000fff 00000054
+15 instructions executed.
